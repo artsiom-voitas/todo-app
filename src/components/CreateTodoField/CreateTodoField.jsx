@@ -9,7 +9,7 @@ function CreateTodoField(props) {
     const { setTodos } = props;
     const [title, setTitle] = useState('');
 
-    function addTodo() {
+    function addTodo(title) {
         setTodos((prev) => [
             {
                 id: new Date(),
