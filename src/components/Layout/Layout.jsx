@@ -1,9 +1,5 @@
 import PropTypes from 'prop-types';
 
-Layout.propTypes = {
-    children: PropTypes.element
-};
-
 function Layout(props) {
     const { children } = props;
     return (
@@ -12,5 +8,9 @@ function Layout(props) {
         </div>
     );
 }
+
+Layout.propTypes = {
+    children: PropTypes.element
+};
 
 export default Layout;

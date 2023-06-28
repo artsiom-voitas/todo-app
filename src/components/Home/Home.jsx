@@ -1,6 +1,6 @@
-import TodoItem from '../TodoItem/TodoItem.jsx';
 import { useState } from 'react';
-import CreateTodoField from '../CreateTodoField/CreateTodoField.jsx';
+import CreateTodoField from '../CreateTodoField/';
+import TodoItem from '../TodoItem/';
 
 const data = [
     {
@@ -35,12 +35,13 @@ function Home() {
     }
 
     return (
-        <div>
-            <h1 className={'text-2xl font-bold mb-10 text-center'}>Your To-Do List</h1>
+        <div className={'mb-20'}>
+            <h1 className={'sm:text-2xl text-xl font-bold mb-10 text-center'}>Your To-Do List</h1>
+            <CreateTodoField setTodos={setTodos} />
             {todos.map((todo) => (
                 <div
                     key={todo.id}
-                    className={'mx-4'}>
+                    className={'mx-auto px-2 max-w-md'}>
                     <TodoItem
                         todo={todo}
                         toggleTodo={toggleTodo}
@@ -48,7 +49,6 @@ function Home() {
                     />
                 </div>
             ))}
-            <CreateTodoField setTodos={setTodos} />
         </div>
     );
 }

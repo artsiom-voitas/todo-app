@@ -1,10 +1,6 @@
 import { BsCheck } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 
-Check.propTypes = {
-    isCompleted: PropTypes.bool
-};
-
 function Check(props) {
     const { isCompleted } = props;
     return (
@@ -21,5 +17,9 @@ function Check(props) {
         </div>
     );
 }
+
+Check.propTypes = {
+    isCompleted: PropTypes.bool
+};
 
 export default Check;
