@@ -21,7 +21,7 @@ function CreateTodoField(props) {
     }
 
     return (
-        <div className={'mx-auto px-2 max-w-md'}>
+        <div className={'mx-auto px-2 max-w-lg'}>
             <div className={'rounded-2xl bg-zinc-800 p-5 w-full sm:text-base text-sm mb-10 flex'}>
                 <input
                     type="text"
@@ -46,7 +46,7 @@ function CreateTodoField(props) {
 }
 
 CreateTodoField.propTypes = {
-    setTodos: PropTypes.func
+    setTodos: PropTypes.func.isRequired
 };
 
 export default CreateTodoField;

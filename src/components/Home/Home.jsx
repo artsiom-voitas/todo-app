@@ -1,32 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getTodos } from '../../services/getTodos';
 import CreateTodoField from '../CreateTodoField/';
-import TodoItem from '../TodoItem/';
-
-const data = [
-    {
-        id: 0,
-        title: 'Finish the essay',
-        isCompleted: false
-    },
-    {
-        id: 1,
-        title: 'Read the essay',
-        isCompleted: false
-    },
-    {
-        id: 2,
-        title: 'Send feedback for the project',
-        isCompleted: true
-    }
-];
+import TodoItems from '../TodoItems';
 
 function Home() {
-    const [todos, setTodos] = useState(data);
+    const [todos, setTodos] = useState([]);
+    useEffect(() => {
+        getTodos(setTodos);
+        return () => {};
+    }, []);
 
     function toggleTodo(id) {
         const todosCopy = [...todos];
         const currentTodo = todosCopy.find((todo) => todo.id === id);
-        currentTodo.isCompleted = !currentTodo.isCompleted;
+        currentTodo.completed = !currentTodo.completed;
         setTodos(todosCopy);
     }
 
@@ -38,17 +25,11 @@ function Home() {
         <div className={'mb-20'}>
             <h1 className={'sm:text-2xl text-xl font-bold mb-10 text-center'}>Your To-Do List</h1>
             <CreateTodoField setTodos={setTodos} />
-            {todos.map((todo) => (
-                <div
-                    key={todo.id}
-                    className={'mx-auto px-2 max-w-md'}>
-                    <TodoItem
-                        todo={todo}
-                        toggleTodo={toggleTodo}
-                        removeTodo={removeTodo}
-                    />
-                </div>
-            ))}
+            <TodoItems
+                todos={todos}
+                toggleTodo={toggleTodo}
+                removeTodo={removeTodo}
+            />
         </div>
     );
 }

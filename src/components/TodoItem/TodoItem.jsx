@@ -8,10 +8,10 @@ function TodoItem(props) {
         <div
             className={'flex items-center justify-between mb-4 rounded-2xl bg-zinc-800 p-5 w-full'}>
             <button
-                className={'flex items-center sm:text-base text-sm'}
+                className={'flex items-center sm:text-base text-sm text-left'}
                 onClick={() => toggleTodo(todo.id)}>
-                <Check isCompleted={todo.isCompleted} />
-                <div className={" todo.isCompleted ? 'line-through' : '' "}>{todo.title}</div>
+                <Check isCompleted={todo.completed} />
+                <div className={todo.completed ? 'line-through' : ''}>{todo.todo}</div>
             </button>
             <button>
                 <BsTrash

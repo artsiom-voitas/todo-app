@@ -1,5 +1,5 @@
-import { BsCheck } from 'react-icons/bs';
 import PropTypes from 'prop-types';
+import { BsCheck } from 'react-icons/bs';
 
 function Check(props) {
     const { isCompleted } = props;
@@ -11,7 +11,7 @@ function Check(props) {
             {isCompleted && (
                 <BsCheck
                     size={24}
-                    className={'text-gray-900'}
+                    className={'text-gray-900 min-w-full'}
                 />
             )}
         </div>
