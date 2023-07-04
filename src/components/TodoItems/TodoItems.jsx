@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import TodoItem from '../TodoItem';
 
-function TodoItems(props) {
-    const { todos, toggleTodo, removeTodo } = props;
+function TodoItems() {
+    const todos = useSelector((state) => state['todos']);
+
     return (
         <div>
             {todos.map((todo) => (
@@ -10,20 +11,14 @@ function TodoItems(props) {
                     key={todo.id}
                     className={'mx-auto px-2 max-w-lg'}>
                     <TodoItem
-                        todo={todo}
-                        toggleTodo={toggleTodo}
-                        removeTodo={removeTodo}
+                        id={todo.id}
+                        title={todo.title}
+                        isCompleted={todo.isCompleted}
                     />
                 </div>
             ))}
         </div>
     );
 }
-
-TodoItems.propTypes = {
-    removeTodo: PropTypes.func.isRequired,
-    todos: PropTypes.array.isRequired,
-    toggleTodo: PropTypes.func.isRequired
-};
 
 export default TodoItems;

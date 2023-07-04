@@ -1,21 +1,23 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { IoIosAddCircleOutline } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { addTodoReducer } from '../../redux/todos/todosSlice';
 
-function CreateTodoField(props) {
-    const { setTodos } = props;
+function CreateTodoField() {
     const [title, setTitle] = useState('');
 
-    function addTodo(title) {
+    const dispatch = useDispatch();
+    const unique_id = uuidv4();
+
+    function addTodo() {
         if (title.length > 3) {
-            setTodos((prev) => [
-                {
-                    id: new Date(),
-                    title,
-                    isCompleted: false
-                },
-                ...prev
-            ]);
+            dispatch(
+                addTodoReducer({
+                    todo: title,
+                    id: unique_id
+                })
+            );
             setTitle('');
         }
     }
@@ -27,7 +29,6 @@ function CreateTodoField(props) {
                     type="text"
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
-                    maxLength={40}
                     className={'bg-transparent w-full border-none outline-none'}
                     placeholder="Add Task"
                 />
@@ -35,18 +36,14 @@ function CreateTodoField(props) {
                     <IoIosAddCircleOutline
                         size={22}
                         className={
-                            'text-pink-400 hover:text-red-600 transition-colors ease-in-out duration-300'
+                            'text-pink-400 hover:text-red-600 transition-colors ease-in-out duration-300 ml-3'
                         }
-                        onClick={() => addTodo(title)}
+                        onClick={addTodo}
                     />
                 </button>
             </div>
         </div>
     );
 }
-
-CreateTodoField.propTypes = {
-    setTodos: PropTypes.func.isRequired
-};
 
 export default CreateTodoField;

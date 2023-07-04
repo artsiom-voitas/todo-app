@@ -5,9 +5,10 @@ function Check(props) {
     const { isCompleted } = props;
     return (
         <div
-            className={`border-2 rounded-lg border-pink-400 ${
+            className={`border-2 rounded-lg border-pink-400 w-7 min-w-max h-7 mr-2 ${
                 isCompleted ? 'bg-pink-400' : ''
-            } w-7 h-7 mr-2`}>
+            } `}
+            style={{ minWidth: '28px' }}>
             {isCompleted && (
                 <BsCheck
                     size={24}
@@ -19,7 +20,7 @@ function Check(props) {
 }
 
 Check.propTypes = {
-    isCompleted: PropTypes.bool
+    isCompleted: PropTypes.bool.isRequired
 };
 
 export default Check;

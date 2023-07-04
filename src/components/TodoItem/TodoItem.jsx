@@ -1,35 +1,46 @@
 import PropTypes from 'prop-types';
-import { BsTrash } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { removeTodoReducer, toogleTodoReducer } from '../../redux/todos/todosSlice';
+import RemoveButton from '../RemoveButton';
 import Check from './Check/';
 
 function TodoItem(props) {
-    const { todo, toggleTodo, removeTodo } = props;
+    const { id, title, isCompleted } = props;
+    const dispatch = useDispatch();
+
+    function removeTodo() {
+        dispatch(
+            removeTodoReducer({
+                id
+            })
+        );
+    }
+
+    function toogleTodo() {
+        dispatch(
+            toogleTodoReducer({
+                id
+            })
+        );
+    }
     return (
         <div
             className={'flex items-center justify-between mb-4 rounded-2xl bg-zinc-800 p-5 w-full'}>
             <button
-                className={'flex items-center sm:text-base text-sm text-left'}
-                onClick={() => toggleTodo(todo.id)}>
-                <Check isCompleted={todo.completed} />
-                <div className={todo.completed ? 'line-through' : ''}>{todo.todo}</div>
+                className={'flex items-center sm:text-base text-sm text-left break-words'}
+                onClick={toogleTodo}>
+                <Check isCompleted={isCompleted} />
+                <div className={isCompleted ? 'break-all line-through' : 'break-all'}>{title}</div>
             </button>
-            <button>
-                <BsTrash
-                    size={22}
-                    className={
-                        'text-pink-400 hover:text-red-600 transition-colors ease-in-out duration-300'
-                    }
-                    onClick={() => removeTodo(todo.id)}
-                />
-            </button>
+            <RemoveButton action={removeTodo} />
         </div>
     );
 }
 
 TodoItem.propTypes = {
-    todo: PropTypes.object.isRequired,
-    toggleTodo: PropTypes.func.isRequired,
-    removeTodo: PropTypes.func.isRequired
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    isCompleted: PropTypes.bool.isRequired
 };
 
 export default TodoItem;
