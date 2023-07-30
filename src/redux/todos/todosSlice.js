@@ -10,21 +10,26 @@ export const todosSlice = createSlice({
             const newTodo = {
                 id: action.payload.id,
                 title: action.payload.todo,
-                isCompleted: false
+                isCompleted: false,
+                note: ''
             };
             state.todos.unshift(newTodo);
         },
         removeTodoReducer: (state, action) => {
-            /// START WORK FROME HERE!!
             state.todos = state.todos.filter((item) => item.id !== action.payload.id);
         },
         toogleTodoReducer: (state, action) => {
             const currentTodo = state.todos.find((item) => item.id === action.payload.id);
             currentTodo.isCompleted = !currentTodo.isCompleted;
+        },
+        addNoteReducer: (state, action) => {
+            const currentTodo = state.todos.find((item) => item.id === action.payload.id);
+            currentTodo.note = action.payload.note;
         }
     }
 });
 
-export const { addTodoReducer, removeTodoReducer, toogleTodoReducer } = todosSlice.actions;
+export const { addTodoReducer, removeTodoReducer, toogleTodoReducer, addNoteReducer } =
+    todosSlice.actions;
 
 export default todosSlice.reducer;

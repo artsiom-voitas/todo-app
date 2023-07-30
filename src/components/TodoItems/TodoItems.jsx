@@ -14,6 +14,7 @@ function TodoItems() {
                         id={todo.id}
                         title={todo.title}
                         isCompleted={todo.isCompleted}
+                        note={todo.note}
                     />
                 </div>
             ))}

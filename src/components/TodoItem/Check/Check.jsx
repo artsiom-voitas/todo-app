@@ -5,7 +5,7 @@ function Check(props) {
     const { isCompleted } = props;
     return (
         <div
-            className={`border-2 rounded-lg border-pink-400 w-7 min-w-max h-7 mr-2 ${
+            className={`border-2 rounded-lg border-pink-400 w-7 min-w-max h-7 mr-3 ${
                 isCompleted ? 'bg-pink-400' : ''
             } `}
             style={{ minWidth: '28px' }}>

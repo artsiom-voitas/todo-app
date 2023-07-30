@@ -11,15 +11,13 @@ function CreateTodoField() {
     const unique_id = uuidv4();
 
     function addTodo() {
-        if (title.length > 3) {
-            dispatch(
-                addTodoReducer({
-                    todo: title,
-                    id: unique_id
-                })
-            );
-            setTitle('');
-        }
+        dispatch(
+            addTodoReducer({
+                todo: title,
+                id: unique_id
+            })
+        );
+        setTitle('');
     }
 
     return (
