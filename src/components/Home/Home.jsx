@@ -3,7 +3,7 @@ import CreateTodoField from '../CreateTodoField/';
 import TodoItems from '../TodoItems';
 
 function Home() {
-    const todos = useSelector((state) => state['todos']);
+    const todos = useSelector((state) => state['todos'].todos);
 
     return (
         <div className={'mb-20'}>
